@@ -20,8 +20,8 @@ namespace DIS_Assignment4_Spring2021.Controllers
             _context = context;
         }
 
-        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json";
-        static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";
+        static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$where=`group`=%27By%20Total%27&state=United%20States&age_group=All%20Ages";
+        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";   
 
         HttpClient httpclient = new HttpClient();
 
@@ -48,16 +48,20 @@ namespace DIS_Assignment4_Spring2021.Controllers
                 
             }
 
+
             //add the data to db
             DbDomain d = new DbDomain(_context);
-            d.covidConditionPost(covid_conditions);
+            if(d._context.Covid_Conditions_data.ToList().Count==0)
+            {
+                d.covidConditionPost(covid_conditions);
+            }
 
             //READ Operation
             //var cov1 = d._context.Covid_Conditions_data.Select(element => new
             //{
             //    data = element.condition_group
             //});
-           
+
 
             //var results = from p in d._context.Covid_Conditions_data
             //              group p by p.condition_group into g
@@ -95,7 +99,8 @@ namespace DIS_Assignment4_Spring2021.Controllers
                 covid_conditions.data = JsonConvert.DeserializeObject<List<Covid_Condition>>(covidData);
 
             }
-
+            //DbDomain d = new DbDomain(_context);
+            //var condition_data=d._context.Covid_Conditions_data.Where(c => c.condition_group == val).GroupBy(c => c.condition_group).First();
             return View(covid_conditions.data);
         }
     }
