@@ -20,8 +20,8 @@ namespace DIS_Assignment4_Spring2021.Controllers
             _context = context;
         }
 
-        static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json";
-        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";
+        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json";
+        static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";
 
         HttpClient httpclient = new HttpClient();
 
@@ -72,6 +72,31 @@ namespace DIS_Assignment4_Spring2021.Controllers
             //}
 
             return View(d._context.Covid_Conditions_data.ToList());
+        }
+        public IActionResult Condition(string val)
+        {
+            string condition_api = api_link + "&condition_group=" + val;
+            httpclient.BaseAddress = new Uri(api_link);
+
+            HttpResponseMessage response = httpclient.GetAsync(condition_api).GetAwaiter().GetResult();
+
+            string covidData = null;
+
+            //var responseTask = httpclient.GetAsync(api_link);
+            //responseTask.Wait();
+            //var result = responseTask.Result;
+            if (response.IsSuccessStatusCode)
+            {
+                covidData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            }
+            if (!covidData.Equals(""))
+            {
+                // JsonConvert is part of the NewtonSoft.Json Nuget package
+                covid_conditions.data = JsonConvert.DeserializeObject<List<Covid_Condition>>(covidData);
+
+            }
+
+            return View(covid_conditions.data);
         }
     }
 }
