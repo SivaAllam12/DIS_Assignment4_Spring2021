@@ -1,4 +1,6 @@
-﻿using DIS_Assignment4_Spring2021.Models;
+﻿using DIS_Assignment4_Spring2021.DataAccess;
+using DIS_Assignment4_Spring2021.Domain;
+using DIS_Assignment4_Spring2021.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +13,15 @@ namespace DIS_Assignment4_Spring2021.Controllers
 {
     public class HomeController : Controller
     {
-        static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";
+        public ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json";
+        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";
 
         HttpClient httpclient = new HttpClient();
 
@@ -35,8 +45,33 @@ namespace DIS_Assignment4_Spring2021.Controllers
             {
                 // JsonConvert is part of the NewtonSoft.Json Nuget package
                 covid_conditions.data = JsonConvert.DeserializeObject<List<Covid_Condition>>(covidData);
+                
             }
-            return View(covid_conditions);
+
+            //add the data to db
+            DbDomain d = new DbDomain(_context);
+            d.covidConditionPost(covid_conditions);
+
+            //READ Operation
+            //var cov1 = d._context.Covid_Conditions_data.Select(element => new
+            //{
+            //    data = element.condition_group
+            //});
+           
+
+            //var results = from p in d._context.Covid_Conditions_data
+            //              group p by p.condition_group into g
+            //              select new { condition_group = g.Key, covid_19_deaths = g.Sum(c => Convert.ToInt64(c.covid_19_deaths))};
+
+            //List<Covid_Condition> cov1 = d._context.Covid_Conditions_data.GroupBy(p => p.condition_group).Select(c1=>new 
+            //Covid_Condition
+            //{
+            //    condition_group = c1.First().condition_group,
+            //    covid_19_deaths = c1.Sum().ToString(),
+            //});
+            //}
+
+            return View(d._context.Covid_Conditions_data.ToList());
         }
     }
 }

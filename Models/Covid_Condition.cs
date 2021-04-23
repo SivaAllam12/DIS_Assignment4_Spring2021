@@ -7,11 +7,13 @@ namespace DIS_Assignment4_Spring2021.Models
 {
         public class Covid_Conditions
         {
-            public List<Covid_Condition> data { get; set; }
+        public int Id { get; set; }
+        public List<Covid_Condition> data { get; set; }
         }
 
         public class Covid_Condition
         {
+            public int Id { get; set; }
             public DateTime data_as_of { get; set; }
             public DateTime start_date { get; set; }
             public DateTime end_date { get; set; }

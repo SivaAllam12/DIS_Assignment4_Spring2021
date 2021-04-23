@@ -1,5 +1,4 @@
-﻿@model DIS_Assignment4_Spring2021.Models.Covid_Conditions
-
+﻿@model IEnumerable<DIS_Assignment4_Spring2021.Models.Covid_Condition>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -39,15 +38,18 @@
                         <th></th>
                     </tr>
                 </thead>
-                @foreach (var condition in Model.data)
+                
+                @foreach (var condition in from p in Model
+                                          group p by p.condition_group into g
+                                          select new { condition_group = g.Key, covid_19_deaths = g.Sum(c => Convert.ToInt64(c.covid_19_deaths)) })
                 {
-                <tr class="active-row">
-                <td>@condition.condition_group</td>
-                <td>@condition.age_group</td>
-                <td>@condition.covid_19_deaths</td>
-                <td><button class="tablink" onclick="window.location.href='/UpdateRecord.html'">Update</button></td>
-                <td><button class="tablink" onclick="window.location.href='/DeleteRecord.html'">Delete</button></td>
-                </tr>
+                    <tr class="active-row">
+                        <td>@condition.condition_group</td>
+                        @*<td>@condition.age_group</td>*@
+                        <td>@condition.covid_19_deaths</td>
+                        <td><button class="tablink" onclick="window.location.href='/UpdateRecord.html'">Update</button></td>
+                        <td><button class="tablink" onclick="window.location.href='/DeleteRecord.html'">Delete</button></td>
+                    </tr>
                 }
             </table>
             <!-- <img src="usf-logo-png-2.png" alt="university logo"> -->
