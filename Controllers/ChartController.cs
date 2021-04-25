@@ -45,13 +45,6 @@ namespace DIS_Assignment4_Spring2021.Controllers
             List<long> ChartData = new List<long>();
             ChartData = results.Select(p => p.covid_19_deaths).ToList();
 
-            //ChartLabels.Add("New York");
-            //ChartLabels.Add("London");
-            //ChartLabels.Add("Cairo");
-            //ChartData.Add(50);
-            //ChartData.Add(20);
-            //ChartData.Add(30);
-
             ChartModel Model = new ChartModel
             {
                 ChartType = "bar",
@@ -59,7 +52,6 @@ namespace DIS_Assignment4_Spring2021.Controllers
                 Data = String.Join(",", ChartData.Select(d => d)),
                 Title = "Covid deaths by Condition Group"
             };
-            Console.WriteLine(Model.Data);
             return View(Model);
         }
     }

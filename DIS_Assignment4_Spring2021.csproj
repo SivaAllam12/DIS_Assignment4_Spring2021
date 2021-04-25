@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Chart\GitLogs.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\Home\NewFolder\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

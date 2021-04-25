@@ -31,14 +31,15 @@
         <div class="center">
             <!-- <img class="d-block w-100" src="img/blue-covid-banner.jpg" alt="First slide"> -->
             <h1></h1>
-            <h5 class="styled-table">These visualizations will give you a better understanding of the underlying conditions of patients succumbing to covid-19.</h5>
+            <h5 class="styled-table" style="color:white;background-color:darkslategray;font-size:1.5em;font-family:Garamond">These visualizations will give you a better understanding of the underlying conditions of patients succumbing to covid-19.</h5>
 
             <h1>Bar chart</h1>
-            <div class="center">
-                <canvas id="bar-chart" width="300" height="200"></canvas>
+            <div class="cente styled-table">
+                <canvas id="bar-chart" style="display:block;width:70%;height:500px;margin: 0 auto;"></canvas>
+                @*<canvas id="bar-chart" style="display:block"></canvas>*@
             </div>
             <script>
-            new Chart(document.getElementById("bar-chart"), {
+                new Chart(document.getElementById("bar-chart"), {
                 type: '@Model.ChartType',
                     data: {
                     //labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
@@ -64,7 +65,20 @@
                                 display: true,
                                 ticks: {
                                     beginAtZero: true
-                                }
+                                },
+                                fontSize: 17,
+                                padding: -9
+                            }],
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                },
+                                ticks: {
+                                    beginAtZero: true,
+                                    display: false
+                                },
+                                fontSize: 17,
+                                padding: -9
                             }]
                         },
 
