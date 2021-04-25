@@ -70,3 +70,4 @@ C:\Users\Siva Allam\source\repos\DIS_Assignment4_Spring2021\bin\Debug\netcoreapp
 C:\Users\Siva Allam\source\repos\DIS_Assignment4_Spring2021\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Siva Allam\source\repos\DIS_Assignment4_Spring2021\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Siva Allam\source\repos\DIS_Assignment4_Spring2021\obj\Debug\netcoreapp3.1\Razor\Views\Home\condition.cshtml.g.cs
+C:\Users\Siva Allam\source\repos\DIS_Assignment4_Spring2021\obj\Debug\netcoreapp3.1\Razor\Views\Home\Update.cshtml.g.cs

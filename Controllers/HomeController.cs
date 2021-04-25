@@ -19,13 +19,13 @@ namespace DIS_Assignment4_Spring2021.Controllers
         {
             _context = context;
         }
-
         static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$where=`group`=%27By%20Total%27&state=United%20States&age_group=All%20Ages";
         //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";   
 
         HttpClient httpclient = new HttpClient();
 
         Covid_Conditions covid_conditions = new Covid_Conditions();
+
         public IActionResult Data()
         {
             httpclient.BaseAddress = new Uri(api_link);
@@ -48,60 +48,61 @@ namespace DIS_Assignment4_Spring2021.Controllers
                 
             }
 
-
-            //add the data to db
             DbDomain d = new DbDomain(_context);
-            if(d._context.Covid_Conditions_data.ToList().Count==0)
+            //add the data to db
+            if (d._context.Covid_Conditions_data.ToList().Count==0)
             {
                 d.covidConditionPost(covid_conditions);
             }
 
-            //READ Operation
-            //var cov1 = d._context.Covid_Conditions_data.Select(element => new
-            //{
-            //    data = element.condition_group
-            //});
-
-
-            //var results = from p in d._context.Covid_Conditions_data
-            //              group p by p.condition_group into g
-            //              select new { condition_group = g.Key, covid_19_deaths = g.Sum(c => Convert.ToInt64(c.covid_19_deaths))};
-
-            //List<Covid_Condition> cov1 = d._context.Covid_Conditions_data.GroupBy(p => p.condition_group).Select(c1=>new 
-            //Covid_Condition
-            //{
-            //    condition_group = c1.First().condition_group,
-            //    covid_19_deaths = c1.Sum().ToString(),
-            //});
-            //}
 
             return View(d._context.Covid_Conditions_data.ToList());
         }
         public IActionResult Condition(string val)
         {
-            string condition_api = api_link + "&condition_group=" + val;
-            httpclient.BaseAddress = new Uri(api_link);
-
-            HttpResponseMessage response = httpclient.GetAsync(condition_api).GetAwaiter().GetResult();
-
-            string covidData = null;
-
-            //var responseTask = httpclient.GetAsync(api_link);
-            //responseTask.Wait();
-            //var result = responseTask.Result;
-            if (response.IsSuccessStatusCode)
+            if (TempData.Count!= 0 )
             {
-                covidData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                ViewBag.Message = TempData["shortMessage"].ToString();
             }
-            if (!covidData.Equals(""))
-            {
-                // JsonConvert is part of the NewtonSoft.Json Nuget package
-                covid_conditions.data = JsonConvert.DeserializeObject<List<Covid_Condition>>(covidData);
+            return View(_context.Covid_Conditions_data.Where(c => c.condition_group == val));
 
-            }
-            //DbDomain d = new DbDomain(_context);
+
+
             //var condition_data=d._context.Covid_Conditions_data.Where(c => c.condition_group == val).GroupBy(c => c.condition_group).First();
-            return View(covid_conditions.data);
+            //return View(covid_conditions.data);
+        }
+        public IActionResult Update(string cond)
+        {
+            DbDomain d = new DbDomain(_context);
+
+            var _cov=d._context.Covid_Conditions_data.Where(c => c.condition == cond).First();
+
+            return View(_cov);
+        }
+        [HttpPost]
+        public IActionResult UpdateRecord(Covid_Condition data)
+        {
+            var rec=_context.Covid_Conditions_data.FirstOrDefault(x => x.CaseId== data.CaseId);
+
+            if(rec!=null)
+            {
+                rec.covid_19_deaths = data.covid_19_deaths;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Condition", new { val = rec.condition_group });
+        }
+        public IActionResult Delete(string cond)
+        {
+            var rec = _context.Covid_Conditions_data.FirstOrDefault(x => x.condition == cond);
+            if (rec != null)
+            {
+                _context.Covid_Conditions_data.Remove(rec);
+                _context.SaveChanges();
+                TempData["shortMessage"] = "Deleted Successfully";
+            }
+
+            return RedirectToAction("Condition",new { val = rec.condition_group });
         }
     }
 }

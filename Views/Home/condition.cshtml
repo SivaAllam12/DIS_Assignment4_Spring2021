@@ -1,4 +1,4 @@
-﻿@model List<DIS_Assignment4_Spring2021.Models.Covid_Condition>
+﻿@model IEnumerable<DIS_Assignment4_Spring2021.Models.Covid_Condition>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,17 +39,35 @@
             </thead>
 
             @foreach (var val in Model)
-
             {
-                <tr class="active-row">
-                    <td>@val.condition</td>
-                    @*<td>@condition.age_group</td>*@
-                    <td>@val.covid_19_deaths</td>
-                    <td><button class="tablink" onclick="window.location.href='/UpdateRecord.html'">Update</button></td>
-                    <td><button class="tablink" onclick="window.location.href='/DeleteRecord.html'">Delete</button></td>
-                </tr>
-            }
+                
+                    <tr class="active-row">
+                        <td>@val.condition</td>
+                        @*<td>@condition.age_group</td>*@
+                        <td>@val.covid_19_deaths</td>
+                        <td>
+                            @using (Html.BeginForm("Update", "Home", new { cond = val.condition }))
+                            {
+                                <input class="tablink" type="submit" value="Update" style="background-color:darkslategray"
+                                                 onclick="return confirm('Are You sure you want to update @val.condition?');" />
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Delete", "Home", new { cond = val.condition }))
+                            {
+                                <input class="tablink" type="submit" value="Delete" style="background-color:darkslategray"
+                                       onclick="return confirm('Are You sure you want to delete @val.condition?');" />
+                            }
+
+                        </td>
+                        <td>@*@Html.ActionLink("Delete", "Delete", new { cond = val.condition }, new { @class = "tablink" })*@</td>
+                    </tr>
+                    } 
         </table>
+        
+       
+        <p style="color:green">@ViewBag.message</p>
+       
         <!-- <img src="usf-logo-png-2.png" alt="university logo"> -->
         <h5 class="styled-table">Explore the underlying conditions of people who are dying from Covid-19 in the state of Florida. We in no way through our Website imply that these condistions can aggravate conditions of people suffering from Covid-19 .Through our statistics we can showcase only relations and no causation.</h5>
     </div>

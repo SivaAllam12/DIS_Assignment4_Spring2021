@@ -21,5 +21,6 @@ namespace DIS_Assignment4_Spring2021.Domain
             _context.Covid_Conditions.Add(covid1);
             _context.SaveChanges();
         }
+       
     }
 }

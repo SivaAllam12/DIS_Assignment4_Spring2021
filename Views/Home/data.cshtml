@@ -46,8 +46,8 @@
                         <td>@Html.ActionLink(condition.condition_group, "condition", new { val = condition.condition_group }) </td>
                         @*<td>@condition.age_group</td>*@
                         <td>@condition.covid_19_deaths</td>
-                        <td><button class="tablink" onclick="window.location.href='/UpdateRecord.html'">Update</button></td>
-                        <td><button class="tablink" onclick="window.location.href='/DeleteRecord.html'">Delete</button></td>
+                        @*<td><button class="tablink">@Html.ActionLink("Update","Update",new { val = Model.Where(c=>c.condition_group==condition.condition_group) })</button></td>
+                        <td><button class="tablink" onclick="window.location.href='/DeleteRecord.html'">Delete</button></td>*@
                     </tr>
                 }
             </table>
