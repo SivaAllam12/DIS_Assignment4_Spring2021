@@ -145,3 +145,7 @@ C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\obj\Debug\netcorea
 C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\obj\Debug\netcoreapp3.1\DIS_Assignment4_Spring2021.pdb
 C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\obj\Debug\netcoreapp3.1\DIS_Assignment4_Spring2021.genruntimeconfig.cache
 C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\obj\Debug\netcoreapp3.1\Razor\Views\Chart\Chart.cshtml.g.cs
+C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\2021.deps.json
+C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\2021.runtimeconfig.dev.json
+C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\2021.runtimeconfig.json
+C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\t.json
