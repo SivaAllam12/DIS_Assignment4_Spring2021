@@ -17,7 +17,6 @@ namespace DIS_Assignment4_Spring2021.Models
 
     }
 
-  
     public class Covid_Conditions
     {
         [Key]
@@ -40,6 +39,15 @@ namespace DIS_Assignment4_Spring2021.Models
         //public string flag { get; set; }
         public Covid_Conditions Id { get; set; }
     }
-   
+
+    public class ChartModel
+    {
+        public string ChartType { get; set; }
+        public string Labels { get; set; }
+        public string Data { get; set; }
+        public string Title { get; set; }
+
+    }
+
 }
 

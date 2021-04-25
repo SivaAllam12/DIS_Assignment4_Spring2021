@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Siva Allam\\source\\repos\\DIS_Assignment4_Spring2021\\DIS_Assignment4_Spring2021.csproj": {}
+    "C:\\Users\\aakas\\source\\repos\\DIS_Assignment4_Spring2021_Master\\DIS_Assignment4_Spring2021.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Siva Allam\\source\\repos\\DIS_Assignment4_Spring2021\\DIS_Assignment4_Spring2021.csproj": {
+    "C:\\Users\\aakas\\source\\repos\\DIS_Assignment4_Spring2021_Master\\DIS_Assignment4_Spring2021.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Siva Allam\\source\\repos\\DIS_Assignment4_Spring2021\\DIS_Assignment4_Spring2021.csproj",
+        "projectUniqueName": "C:\\Users\\aakas\\source\\repos\\DIS_Assignment4_Spring2021_Master\\DIS_Assignment4_Spring2021.csproj",
         "projectName": "DIS_Assignment4_Spring2021",
-        "projectPath": "C:\\Users\\Siva Allam\\source\\repos\\DIS_Assignment4_Spring2021\\DIS_Assignment4_Spring2021.csproj",
-        "packagesPath": "C:\\Users\\Siva Allam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Siva Allam\\source\\repos\\DIS_Assignment4_Spring2021\\obj\\",
+        "projectPath": "C:\\Users\\aakas\\source\\repos\\DIS_Assignment4_Spring2021_Master\\DIS_Assignment4_Spring2021.csproj",
+        "packagesPath": "C:\\Users\\aakas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aakas\\source\\repos\\DIS_Assignment4_Spring2021_Master\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Siva Allam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aakas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

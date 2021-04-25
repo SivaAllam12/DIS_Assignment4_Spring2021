@@ -20,7 +20,7 @@ namespace DIS_Assignment4_Spring2021.Controllers
             _context = context;
         }
         static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$where=`group`=%27By%20Total%27&state=United%20States&age_group=All%20Ages";
-        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=Florida";   
+        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=United States";   
 
         HttpClient httpclient = new HttpClient();
 
