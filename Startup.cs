@@ -44,7 +44,7 @@ namespace DIS_Assignment4_Spring2021
             }
 
 
-            //display index page by default
+            //display index page by default...
             app.UseDefaultFiles();
 
             //To display static files in wwwroot folder
