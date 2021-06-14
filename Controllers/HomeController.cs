@@ -20,7 +20,6 @@ namespace DIS_Assignment4_Spring2021.Controllers
             _context = context;
         }
         static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$where=`group`=%27By%20Total%27&state=United%20States&age_group=All%20Ages";
-        //static string api_link = "https://data.cdc.gov/resource/hk9y-quqm.json?$limit=2&state=United States";   
 
         HttpClient httpclient = new HttpClient();
 
@@ -39,11 +38,12 @@ namespace DIS_Assignment4_Spring2021.Controllers
             //var result = responseTask.Result;
             if (response.IsSuccessStatusCode)
             {
+                //Get the data from api and store it as string in covidData variable
                 covidData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             }
             if (!covidData.Equals(""))
             {
-                // JsonConvert is part of the NewtonSoft.Json Nuget package
+                // JsonConvert is part of the NewtonSoft.Json Nuget package which convert string to json
                 covid_conditions.data = JsonConvert.DeserializeObject<List<Covid_Condition>>(covidData);
                 
             }
@@ -52,6 +52,7 @@ namespace DIS_Assignment4_Spring2021.Controllers
             //add the data to db
             if (d._context.Covid_Conditions_data.ToList().Count==0)
             {
+                //post the data into database
                 d.covidConditionPost(covid_conditions);
             }
 
@@ -62,6 +63,7 @@ namespace DIS_Assignment4_Spring2021.Controllers
         {
             if (TempData.Count!= 0 )
             {
+                //to display a message to the client like updated or deleted
                 ViewBag.Message = TempData["shortMessage"].ToString();
             }
             return View(_context.Covid_Conditions_data.Where(c => c.condition_group == val));
@@ -74,7 +76,7 @@ namespace DIS_Assignment4_Spring2021.Controllers
         public IActionResult Update(string cond)
         {
             DbDomain d = new DbDomain(_context);
-
+            //fetch the records which match the given condition
             var _cov=d._context.Covid_Conditions_data.Where(c => c.condition == cond).First();
 
             return View(_cov);
