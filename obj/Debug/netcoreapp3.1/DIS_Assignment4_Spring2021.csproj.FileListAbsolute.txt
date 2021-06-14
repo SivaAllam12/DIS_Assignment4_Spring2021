@@ -149,3 +149,4 @@ C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcorea
 C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\2021.runtimeconfig.dev.json
 C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\2021.runtimeconfig.json
 C:\Users\aakas\source\repos\DIS_Assignment4_Spring2021_Master\bin\Debug\netcoreapp3.1\t.json
+C:\Users\Siva Allam\source\repos\DIS_Assignment4_Spring2021\obj\Debug\netcoreapp3.1\Razor\Views\Chart\Chart.cshtml.g.cs
